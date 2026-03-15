@@ -1,7 +1,7 @@
 
 const createElements = (arr) => {
     const colors = ["bg-red-200", "bg-green-200", "bg-blue-200"];
-    const htmlElements = arr.map((el, index) => `<span class="${colors[index % colors.length]} bg-gray-100 rounded-full px-2 py-1">${el}</span>`);
+    const htmlElements = arr.map((el) => `<span class="bg-gray-100 rounded-full px-2 py-1">${el}</span>`);
     return htmlElements.join(' ');
 };
 
@@ -10,9 +10,19 @@ const loadCard = () => {
     fetch(url)
         .then((res) => res.json())
         .then((json) => {
-            displayCard(json.data); 
+            displayCard(json.data);
         });
 };
+
+const buttons = document.querySelectorAll('.filter-btn');
+buttons.forEach((button) => {
+    button.addEventListener('click', function() {
+        buttons.forEach((btn) => {
+            btn.classList.remove('active');
+        });
+        this.classList.add('active');
+    });
+});
 
 // {
 //     "id": 1,
@@ -31,7 +41,7 @@ const loadCard = () => {
 // }
 const displayCard = (infos) => {
     const cardContainer = document.getElementById('card-container');
-    
+
 
     infos.forEach((info) => {
         const cardDiv = document.createElement('div');
