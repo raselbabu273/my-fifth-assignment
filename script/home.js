@@ -1,5 +1,7 @@
+
 const createElements = (arr) => {
-    const htmlElements = arr.map((el) => `<span class="btn bg-sky-100">${el}</span>`);
+    const colors = ["bg-red-200", "bg-green-200", "bg-blue-200"];
+    const htmlElements = arr.map((el, index) => `<span class="${colors[index % colors.length]} bg-gray-100 rounded-full px-2 py-1">${el}</span>`);
     return htmlElements.join(' ');
 };
 
@@ -45,9 +47,7 @@ const displayCard = (infos) => {
                         <p class="text-xs text-[#64748B]">${info.description}</p>
                     </div>
                     <div class="flex gap-2 px-5">
-                        <div class="text-red-500 bg-red-300 rounded-full px-2"><i class="fa-solid fa-bug"></i> Bug</div>
-                        <div class="text-orange-400 bg-orange-200 rounded-full px-2"><i
-                                class="fa-regular fa-life-ring"></i>Help Wanted</div>
+                        ${createElements(info.labels)}
                     </div>
                 </div>
                 <div class="p-5 space-y-4">
@@ -56,6 +56,8 @@ const displayCard = (infos) => {
                 </div>
             </div>
         `;
+        // <div class="text-red-500 bg-red-100 rounded-full px-2"><i class="fa-solid fa-bug"></i> Bug</div>
+        //                 <div class="text-orange-400 bg-orange-100 rounded-full px-2"><i class="fa-regular fa-life-ring"></i>Help Wanted</div>
         cardContainer.append(cardDiv);
     });
 };
