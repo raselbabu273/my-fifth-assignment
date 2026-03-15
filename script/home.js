@@ -1,7 +1,7 @@
 
 const createElements = (arr) => {
     const colors = ["bg-red-200", "bg-green-200", "bg-blue-200"];
-    const htmlElements = arr.map((el) => `<span class="btn btn-soft text-[12px] uppercase bg-gray-100 rounded-full px-3 py-1">${el}</span>`);
+    const htmlElements = arr.map((el) => `<span class="text-[0.8rem] uppercase bg-gray-100 rounded-full px-3 py-1">${el}</span>`);
     return htmlElements.join(' ');
 };
 let allIssues = [];
@@ -56,7 +56,7 @@ const displayCard = (infos) => {
         // Border color
         const borderColor = info.status === "open" ? "border-green-600" : "border-purple-600";
         cardDiv.innerHTML = `
-        <div id="issue-card" class="shadow-md rounded-md border-t-5 h-[27rem] max-sm:h-[33rem] ${borderColor}">
+        <div id="issue-card" class="shadow-md rounded-md border-t-5 h-[24rem] ${borderColor} hover:cursor-pointer">
                 <div class="border-b border-gray-300 py-8 space-y-4">
                     <div class="flex justify-between items-center px-5">
                         <div><img src="./assets/Open-Status.png" alt=""></div>
