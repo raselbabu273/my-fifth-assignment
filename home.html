@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Title -->
+    <title>Home | Page</title>
+
+    <!-- Font-Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Tailwind + DaisyUI -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- Font Integration -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="./styles/style.css">
+</head>
+
+<body class="bg-[#F8FAFC]">
+    <!-- Navbar -->
+    <header>
+        <div class="navbar flex justify-between bg-base-100 shadow-sm px-15">
+            <div class="flex justify-center items-center gap-2">
+                <img class="w-9 h-9" src="./assets/github-logo.png" alt="">
+                <h2 class="text-2xl font-semibold">GitHub Issues Tracker</h2>
+            </div>
+            <div class="flex gap-2">
+                <input type="text" placeholder="🔍 Search issues..." class="input input-bordered w-24 md:w-auto" />
+                <button class="btn btn-primary">Search</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Button section -->
+    <section class="w-10/12 mx-auto bg-white shadow-sm p-6 mt-15 rounded-md">
+        <div class="flex justify-start gap-3">
+            <button class="btn btn-soft btn-primary px-8">All</button>
+            <button class="btn btn-soft btn-primary px-8">Open</button>
+            <button class="btn btn-soft btn-primary px-8">Closed</button>
+        </div>
+    </section>
+
+    <!-- Issue Section -->
+    <section class="w-10/12 mx-auto bg-white shadow-sm pt-6 mt-5 rounded-md">
+        <div class="grid md:flex justify-between border-b border-gray-300 p-4">
+            <div class="flex justify-center items-center gap-3 mb-6">
+                <div class="bg-[#4800ff31] p-1 rounded-full">
+                    <img class="w-10 h-10" src="./assets/Aperture.png" alt="">
+                </div>
+                <div>
+                    <h2 class="text-xl font-semibold"><span>50</span> Issues</h2>
+                    <p class="text-[#64748B]">Track and manage your project issues</p>
+                </div>
+            </div>
+            <div class="flex justify-start md:justify-center items-center gap-5">
+                <div class="flex items-center gap-2"><span class="w-4 h-4 bg-green-600 rounded-full"></span>
+                    <span class="font-semibold">Open</span>
+                </div>
+                <div class="flex items-center gap-2"><span class="w-4 h-4 bg-purple-600 rounded-full"></span>
+                    <span class="font-semibold">Closed</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="card-container">
+            <div id="card">
+                <div>
+                    <div><img src="./assets/Open-Status.png" alt=""></div>
+                    <div>Medium</div>
+                </div>
+                <div>
+                    <h2>card title</h2>
+                    <p>description</p>
+                </div>
+                <div>
+                    <div><i class="fa-solid fa-bug"></i> Bug</div>
+                    <div><i class="fa-regular fa-life-ring"></i> Help</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="./script/home.js"></script>
+</body>
+
+</html>
