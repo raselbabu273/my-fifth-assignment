@@ -13,15 +13,15 @@ document.getElementById('sign-in-btn').addEventListener('click', function () {
     if (username === 'admin' && password === 'admin123') {
 
         // 3-1. true:::>> alert > homepage
-        alert('Login Successful');
+        alert('Sign In Successful');
     }
     else {
         // 3-2. false:::>> alert > return
-        alert('Login Failed');
+        alert('Sign In Failed');
         return;
     }
 
     // clean input field
-    inputNumber.value = '';
-    inputPin.value = '';
+    inputUsername = '';
+    inputPassword = '';
 })
