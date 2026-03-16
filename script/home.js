@@ -40,6 +40,16 @@ const loadCard = async () => {
     displayCard(allIssues);
 };
 
+// Issue Card Details
+const issueCardDetail = (id) => {
+    const url = `https://openapi.programming-hero.com/api/word/${id}`;
+    fetch(url)
+        .then((res) => res.json())
+        .then((details) => {
+            displayWordDetails(details.data);
+        });
+};
+
 // ---------Active Buttons--------
 const buttons = document.querySelectorAll('.filter-btn');
 const items = document.querySelector('.issues');
@@ -81,15 +91,24 @@ const displayCard = (infos) => {
     infos.forEach((info) => {
         const cardDiv = document.createElement('div');
 
+        // Priority Color Set
+        const priorityColors = {
+            high: "btn btn-soft btn-error",
+            medium: "btn btn-soft btn-warning",
+            low: "btn btn-soft"
+        };
+        const priority = info.priority;
+        const colorClass = priorityColors[priority.toLowerCase()];
+
         // Border color
         const borderColor = info.status === "open" ? "border-green-600" : "border-purple-600";
 
         cardDiv.innerHTML = `
-        <div id="issue-card" class="shadow-md rounded-md border-t-5 h-[27rem] ${borderColor} hover:cursor-pointer">
+        <div id="issue-card" class="shadow-md rounded-md border-t-5 h-[27rem] ${borderColor} hover:cursor-pointer active:-translate-y-1 transition">
                 <div class="border-b border-gray-300 py-8 space-y-4">
                     <div class="flex justify-between items-center px-5">
                         <div><img src="./assets/Open-Status.png" alt=""></div>
-                        <div class="bg-gray-300 px-3 rounded-full">${info.priority}</div>
+                        <div class="${colorClass} px-3 rounded-full uppercase">${info.priority}</div>
                     </div>
                     <div class="px-5">
                         <h2 class="text-xl font-bold my-2">${info.title}</h2>
