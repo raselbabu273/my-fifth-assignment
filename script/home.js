@@ -189,6 +189,24 @@ closedBtn.addEventListener("click", () => {
     displayCard(closedIssues);
 });
 
-
-
 loadCard();
+
+
+document.getElementById('btn-search').addEventListener('click', () => {
+    const input = document.getElementById('input-search');
+    const searchValue = input.value.trim().toLowerCase();
+
+    fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${searchValue}`)
+        .then((res) => res.json())
+        .then((data) => {
+            console.log(data.data);
+
+            const allWords = data.data;
+            const filterWords = allWords.filter((word) => word.title.toLowerCase().includes(searchValue)
+            );
+
+            displayCard(filterWords);
+
+            input.value = "";
+        });
+});
