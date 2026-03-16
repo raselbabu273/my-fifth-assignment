@@ -41,8 +41,6 @@ const loadIssueDetail = (id) => {
     fetch(url)
         .then((res) => res.json())
         .then((details) => {
-            console.log(details.data);
-
             displayIssueDetails(details.data);
         });
 };
@@ -78,32 +76,41 @@ buttons.forEach((button) => {
 const displayIssueDetails = (detail) => {
     const detailsContainer = document.getElementById('details-container');
 
+    // Priority Color Set
+    const priorityColors = {
+        high: "text-[14px] text-white bg-red-600 px-4 rounded-full",
+        medium: "text-[14px] text-white bg-yellow-500 px-4 rounded-full",
+        low: "text-[14px] text-white bg-gray-400 px-4 rounded-full"
+    };
+    const priority = detail.priority;
+    const colorClass = priorityColors[priority.toLowerCase()];
+
     detailsContainer.innerHTML = `
-        <div class="rounded-md p-4">
+        <div class="rounded-md mb-10 p-4">
             <div class="text-2xl font-bold">${detail.title}</div>
 
-            <div class="px-5">
-                <div>${detail.status}</div>
-                <div></div>
-                <div>Opened by ${detail.author}</div>
-                <div></div>
-                <div>${detail.createdAt.split("T")[0].split("-").reverse().join("-")}</div>
+            <div class="flex items-center gap-3 my-5">
+                <div>${detail.status === 'open' ? `<span class="text-[14px] text-white bg-green-600 px-3 py-1 rounded-full">Opened</span>` : `<span class="text-[14px] text-white bg-red-600 px-3 py-1 rounded-full">Closed</span>`}</div>
+                <div class="w-1 h-1 bg-gray-600 rounded-full"></div>
+                <div class="text-[13px] text-[#64748B]">Opened by <span class="uppercase">${detail.author.replace("_", " ")}</span></div>
+                <div class="w-1 h-1 bg-gray-600 rounded-full"></div>
+                <div class="text-[13px] text-[#64748B]">${detail.createdAt.split("T")[0].split("-").reverse().join("-")}</div>
             </div>
 
-            <div class="flex gap-3">
+            <div class="flex gap-3 my-4">
                 ${createElements(detail.labels)}
             </div>
 
-            <p class="text-xs text-[#64748B]">${detail.description}</p>
+            <p class="text-[#64748B] my-5">${detail.description}</p>
                 
-            <div class="">
-                <div>
+            <div class="flex justify-between items-center bg-sky-50 p-4 my-5 rounded-md">
+                <div class="space-y-2">
                     <p>Assignee:</p>
-                    <p>${detail.author}</p>
+                    <p class="uppercase">${detail.author.replace("_", " ")}</p>
                 </div>
-                <div>
+                <div class="pr-32 space-y-2">
                     <p>Priority:</p>
-                    <p>${detail.priority}</p>
+                    <p class="text-[13px] uppercase ${colorClass}">${detail.priority}</p>
                 </div>
             </div>
         </div>
@@ -127,9 +134,9 @@ const displayCard = (infos) => {
 
         // Priority Color Set
         const priorityColors = {
-            high: "btn btn-soft btn-error",
-            medium: "btn btn-soft btn-warning",
-            low: "btn btn-soft"
+            high: "text-[14px] font-semibold text-red-600 bg-red-200 px-4 py-1 rounded-full",
+            medium: "text-[14px] font-semibold text-yellow-600 bg-yellow-200 px-4 py-1 rounded-full",
+            low: "text-[14px] font-semibold text-gray-600 bg-gray-200 px-4 py-1 rounded-full"
         };
         const priority = info.priority;
         const colorClass = priorityColors[priority.toLowerCase()];
@@ -153,7 +160,7 @@ const displayCard = (infos) => {
                     </div>
                 </div>
                 <div class="p-4 space-y-4">
-                    <p class="text-[#64748B] uppercase">Author: ${info.author}</p>
+                    <p class="text-[#64748B]">Author: <span class="uppercase">${info.author.replace("_", " ")}</span></p>
                     <p class="text-[#64748B]">Created: ${info.createdAt.split("T")[0].split("-").reverse().join("-")}</p>
                     <p class="text-[#64748B]">Updated: ${info.updatedAt.split("T")[0].split("-").reverse().join("-")}</p>
                 </div>
