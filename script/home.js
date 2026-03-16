@@ -25,12 +25,7 @@ const createElements = (arr) => {
     return htmlElements.join(' ');
 };
 
-// const createElements = (arr) => {
-//     const htmlElements = arr.map((el) => `<span class="text-[0.8rem] uppercase bg-gray-100 rounded-full px-3 py-1">${el}</span>`);
-//     return htmlElements.join(' ');
-// };
-
-// Fetch All Issue card
+// ---------Fetch All Issue card---------
 let allIssues = [];
 const loadCard = async () => {
     const url = 'https://phi-lab-server.vercel.app/api/v1/lab/issues';
@@ -40,17 +35,17 @@ const loadCard = async () => {
     displayCard(allIssues);
 };
 
-// Issue Card Details
-const issueCardDetail = (id) => {
-    const url = `https://openapi.programming-hero.com/api/word/${id}`;
+// ---------Issue Card Details---------
+const loadIssueDetail = (id) => {
+    const url = `https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`;
     fetch(url)
         .then((res) => res.json())
         .then((details) => {
-            displayWordDetails(details.data);
+            displayIssueDetails(details.data);
         });
 };
 
-// ---------Active Buttons--------
+// ---------Active Buttons---------
 const buttons = document.querySelectorAll('.filter-btn');
 const items = document.querySelector('.issues');
 buttons.forEach((button) => {
@@ -62,24 +57,20 @@ buttons.forEach((button) => {
     });
 });
 
-// {
-//     "id": 1,
-//     "title": "Fix navigation menu on mobile devices",
-//     "description": "The navigation menu doesn't collapse properly on mobile devices. Need to fix the responsive behavior.",
-//     "status": "open",
-//     "labels": [
-//         "bug",
-//         "help wanted"
-//     ],
-//     "priority": "high",
-//     "author": "john_doe",
-//     "assignee": "jane_smith",
-//     "createdAt": "2024-01-15T10:30:00Z",
-//     "updatedAt": "2024-01-15T10:30:00Z"
-// }
+// ---------Display Modal---------
+const displayIssueDetails = (word) => {
+    const detailsContainer = document.getElementById('details-container');
+    detailsContainer.innerHTML = `
+        <div>
+            Hellooooo
+        </div>
+    `;
+    document.getElementById('word_modal').showModal();
+
+};
 
 
-// Display All Issue card
+// ---------Display All Issue card---------
 const displayCard = (infos) => {
     const cardContainer = document.getElementById('card-container');
     cardContainer.innerHTML = "";
@@ -104,7 +95,7 @@ const displayCard = (infos) => {
         const borderColor = info.status === "open" ? "border-green-600" : "border-purple-600";
 
         cardDiv.innerHTML = `
-        <div id="issue-card" class="shadow-md rounded-md border-t-5 h-[27rem] ${borderColor} hover:cursor-pointer active:-translate-y-1 transition">
+        <div onclick="loadIssueDetail(${info.id})" id="issue-card" class="shadow-md rounded-md border-t-5 h-[27rem] ${borderColor} hover:cursor-pointer active:-translate-y-1 transition">
                 <div class="border-b border-gray-300 py-8 space-y-4">
                     <div class="flex justify-between items-center px-5">
                         <div><img src="./assets/Open-Status.png" alt=""></div>
@@ -120,8 +111,8 @@ const displayCard = (infos) => {
                 </div>
                 <div class="p-4 space-y-4">
                     <p class="text-[#64748B] uppercase">Author: ${info.author}</p>
-                    <p class="text-[#64748B]">Created: ${info.createdAt}</p>
-                    <p class="text-[#64748B]">Updated: ${info.updatedAt}</p>
+                    <p class="text-[#64748B]">Created: ${info.createdAt.split("T")[0].split("-").reverse().join("-")}</p>
+                    <p class="text-[#64748B]">Updated: ${info.updatedAt.split("T")[0].split("-").reverse().join("-")}</p>
                 </div>
             </div>
         `;
