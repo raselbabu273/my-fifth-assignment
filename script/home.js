@@ -19,7 +19,7 @@ const createElements = (arr) => {
         const icon = iconMap[el.toLowerCase()];
         const bgColor = bgColors[el.toLowerCase()];
         return `
-        <span id="labels" class="${bgColor} text-[12px] font-semibold rounded-full px-2 py-1 flex items-center gap-1 uppercase"><span>${icon}</span>${el}</span>
+        <span id="labels" class="${bgColor} text-[11px] font-semibold rounded-full px-3 py-1 flex items-center gap-1 uppercase"><span>${icon}</span>${el}</span>
         `;
     });
     return htmlElements.join(' ');
@@ -41,6 +41,8 @@ const loadIssueDetail = (id) => {
     fetch(url)
         .then((res) => res.json())
         .then((details) => {
+            console.log(details.data);
+
             displayIssueDetails(details.data);
         });
 };
@@ -57,12 +59,53 @@ buttons.forEach((button) => {
     });
 });
 
+// {
+//     "id": 2,
+//     "title": "Add dark mode support",
+//     "description": "Users are requesting a dark mode option. This would improve accessibility and user experience.",
+//     "status": "open",
+//     "labels": [
+//         "enhancement",
+//         "good first issue"
+//     ],
+//     "priority": "medium",
+//     "author": "sarah_dev",
+//     "assignee": "",
+//     "createdAt": "2024-01-14T14:20:00Z",
+//     "updatedAt": "2024-01-16T09:15:00Z"
+// }
 // ---------Display Modal---------
-const displayIssueDetails = (word) => {
+const displayIssueDetails = (detail) => {
     const detailsContainer = document.getElementById('details-container');
+
     detailsContainer.innerHTML = `
-        <div>
-            Hellooooo
+        <div class="rounded-md p-4">
+            <div class="text-2xl font-bold">${detail.title}</div>
+
+            <div class="px-5">
+                <div>${detail.status}</div>
+                <div></div>
+                <div>Opened by ${detail.author}</div>
+                <div></div>
+                <div>${detail.createdAt.split("T")[0].split("-").reverse().join("-")}</div>
+            </div>
+
+            <div class="flex gap-3">
+                ${createElements(detail.labels)}
+            </div>
+
+            <p class="text-xs text-[#64748B]">${detail.description}</p>
+                
+            <div class="">
+                <div>
+                    <p>Assignee:</p>
+                    <p>${detail.author}</p>
+                </div>
+                <div>
+                    <p>Priority:</p>
+                    <p>${detail.priority}</p>
+                </div>
+            </div>
         </div>
     `;
     document.getElementById('word_modal').showModal();
