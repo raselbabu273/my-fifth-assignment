@@ -52,8 +52,10 @@ The spread operator (...), introduced in ES6, is a JavaScript feature that expan
 
 
 - 4️⃣ What is an arrow function?
+==> Answer:
 An arrow function is a concise alternative syntax in JavaScript for writing function expressions, using the => symbol.
 
 
 - 5️⃣ What are template literals?
+==> Answer:
 Template literals are a special type of string literal in JavaScript that are enclosed by backtick (``) characters instead of single or double quotes. They provide enhanced functionality for working with strings, such as string interpolation and multi-line strings.
