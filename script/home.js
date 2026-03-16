@@ -71,21 +71,7 @@ buttons.forEach((button) => {
     });
 });
 
-// {
-//     "id": 2,
-//     "title": "Add dark mode support",
-//     "description": "Users are requesting a dark mode option. This would improve accessibility and user experience.",
-//     "status": "open",
-//     "labels": [
-//         "enhancement",
-//         "good first issue"
-//     ],
-//     "priority": "medium",
-//     "author": "sarah_dev",
-//     "assignee": "",
-//     "createdAt": "2024-01-14T14:20:00Z",
-//     "updatedAt": "2024-01-16T09:15:00Z"
-// }
+
 // ---------Display Modal---------
 const displayIssueDetails = (detail) => {
     const detailsContainer = document.getElementById('details-container');
@@ -122,7 +108,7 @@ const displayIssueDetails = (detail) => {
                     <p>Assignee:</p>
                     <p class="uppercase">${detail.author.replace("_", " ")}</p>
                 </div>
-                <div class="pr-32 space-y-2">
+                <div class="pr-10 md:pr-30 space-y-2">
                     <p>Priority:</p>
                     <p class="text-[13px] uppercase ${colorClass}">${detail.priority}</p>
                 </div>
