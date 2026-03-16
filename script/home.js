@@ -108,7 +108,7 @@ const displayIssueDetails = (detail) => {
                     <p>Assignee:</p>
                     <p class="uppercase">${detail.author.replace("_", " ")}</p>
                 </div>
-                <div class="pr-10 md:pr-30 space-y-2">
+                <div class="pr-8 md:pr-30 space-y-2">
                     <p>Priority:</p>
                     <p class="text-[13px] uppercase ${colorClass}">${detail.priority}</p>
                 </div>
