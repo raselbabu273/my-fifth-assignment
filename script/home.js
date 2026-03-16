@@ -25,9 +25,23 @@ const createElements = (arr) => {
     return htmlElements.join(' ');
 };
 
+// ---------Loading Setup---------
+const manageSpinner = (status) => {
+    if(status === true){
+        document.getElementById('spinner').classList.remove('hidden');
+        document.getElementById('card-container').classList.add('hidden');
+    }
+    else{
+        document.getElementById('card-container').classList.remove('hidden');
+        document.getElementById('spinner').classList.add('hidden');
+    }
+};
+
+
 // ---------Fetch All Issue card---------
 let allIssues = [];
 const loadCard = async () => {
+    manageSpinner(true);
     const url = 'https://phi-lab-server.vercel.app/api/v1/lab/issues';
     const res = await fetch(url);
     const data = await res.json();
@@ -168,6 +182,7 @@ const displayCard = (infos) => {
         `;
 
         cardContainer.append(cardDiv);
+        manageSpinner(false);
     });
 };
 
